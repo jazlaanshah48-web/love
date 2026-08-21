@@ -1,8 +1,7 @@
 const heart = document.querySelector(".heart");
 
-const totalWords = 260;
+const totalWords = 70;
 
-// Heart formula
 function heartPoint(t) {
     const x = 16 * Math.pow(Math.sin(t), 3);
 
@@ -18,7 +17,6 @@ function heartPoint(t) {
     };
 }
 
-// Words ko heart ke outline par place karna
 for (let i = 0; i < totalWords; i++) {
 
     const word = document.createElement("span");
@@ -35,6 +33,18 @@ for (let i = 0; i < totalWords; i++) {
 
     word.style.left = x + "px";
     word.style.top = y + "px";
+
+    // Har text ko curve ke direction mein rotate karo
+    const angle = Math.atan2(
+        16 * Math.pow(Math.cos(t), 3),
+        13 * Math.sin(t)
+        - 10 * Math.sin(2 * t)
+        - 6 * Math.sin(3 * t)
+        - 4 * Math.sin(4 * t)
+    ) * (180 / Math.PI);
+
+    word.style.transform =
+        `translate(-50%, -50%) rotate(${angle}deg)`;
 
     heart.appendChild(word);
 }

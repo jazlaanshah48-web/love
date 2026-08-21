@@ -7,10 +7,10 @@
 body {
     min-height: 100vh;
     background: #000;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     font-family: Arial, sans-serif;
 }
 
@@ -24,8 +24,8 @@ body {
 
 .heart-container {
     position: relative;
-    width: 260px;
-    height: 260px;
+    width: 500px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,62 +33,34 @@ body {
 
 .heart {
     position: relative;
-    width: 150px;
-    height: 150px;
-    background: #ea80b0;
-    transform: rotate(-45deg);
-    animation: heartbeat 1.5s ease-in-out infinite;
-    box-shadow:
-        0 0 15px #ea80b0,
-        0 0 35px #ea80b0,
-        0 0 70px rgba(234, 128, 176, 0.6);
+    width: 420px;
+    height: 420px;
+    background: transparent;
+    animation: pulse 2s ease-in-out infinite;
 }
 
-/* Heart ke dono upper curves */
+/* Har "I love you" */
 
-.heart::before,
-.heart::after {
-    content: "";
+.love-word {
     position: absolute;
-    width: 150px;
-    height: 150px;
-    background: #ea80b0;
-    border-radius: 50%;
+    color: #ea80b0;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+    text-shadow:
+        0 0 4px #ea80b0,
+        0 0 8px #ea80b0,
+        0 0 14px rgba(255, 255, 255, 0.5);
+    opacity: 0.85;
 }
 
-.heart::before {
-    top: -75px;
-    left: 0;
-}
-
-.heart::after {
-    top: 0;
-    left: 75px;
-}
-
-/* Heartbeat animation */
-
-@keyframes heartbeat {
+@keyframes pulse {
     0%, 100% {
-        transform: rotate(-45deg) scale(1);
+        transform: scale(1);
     }
 
     50% {
-        transform: rotate(-45deg) scale(1.08);
+        transform: scale(1.04);
     }
-}
-
-.love-text {
-    position: absolute;
-    z-index: 5;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    white-space: nowrap;
-    transform: rotate(45deg);
-    left: 45px;
-    top: 65px;
-    text-shadow:
-        0 0 5px white,
-        0 0 10px #ea80b0;
 }

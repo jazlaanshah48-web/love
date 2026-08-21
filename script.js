@@ -1,47 +1,40 @@
-.heart {
-    position: relative;
-    width: 320px;
-    height: 300px;
-    background: transparent;
-    transform: none;
-    animation: heartbeat 2s ease-in-out infinite;
-    box-shadow: none;
+const heart = document.querySelector(".heart");
+
+const totalWords = 260;
+
+// Heart formula
+function heartPoint(t) {
+    const x = 16 * Math.pow(Math.sin(t), 3);
+
+    const y =
+        13 * Math.cos(t) -
+        5 * Math.cos(2 * t) -
+        2 * Math.cos(3 * t) -
+        Math.cos(4 * t);
+
+    return {
+        x: x,
+        y: -y
+    };
 }
 
-.love-word {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    color: #ea80b0;
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-    text-shadow:
-        0 0 5px #ea80b0,
-        0 0 10px rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    animation: appear 2s ease-in-out infinite;
-}
+// Words ko heart ke outline par place karna
+for (let i = 0; i < totalWords; i++) {
 
-@keyframes appear {
-    0% {
-        opacity: 0.15;
-    }
+    const word = document.createElement("span");
 
-    50% {
-        opacity: 1;
-    }
+    word.className = "love-word";
+    word.textContent = "I love you";
 
-    100% {
-        opacity: 0.15;
-    }
-}
+    const t = (Math.PI * 2 * i) / totalWords;
 
-@keyframes heartbeat {
-    0%, 100% {
-        transform: scale(1);
-    }
+    const point = heartPoint(t);
 
-    50% {
-        transform: scale(1.04);
-    }
+    const x = 210 + point.x * 11;
+    const y = 210 + point.y * 11;
+
+    word.style.left = x + "px";
+    word.style.top = y + "px";
+
+    heart.appendChild(word);
 }
